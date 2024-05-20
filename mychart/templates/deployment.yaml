@@ -1,0 +1,21 @@
+{{- if .Values.deployMain }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "mychart.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "mychart.name" . }}
+    spec:
+      containers:
+      - name: nginx
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        command: ['sh', '-c', 'echo "this is a deployment test" && rmdir /aaa/aaaaaaa/aaaaaaaa']
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- end }}

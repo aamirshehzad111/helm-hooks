@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-pre-install-hook"
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation
+    # "helm.sh/hook-delete-timeout": ""
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+      - name: pre-install-job
+        image: "busybox"
+        command: ['sh', '-c', 'sleep 2m && echo "this is a hook test" && mkdir /aaa/aaaaaaa/aaaaaaaa']
+      restartPolicy: Never
