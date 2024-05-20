@@ -16,6 +16,6 @@ spec:
       containers:
       - name: nginx
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        command: ['sh', '-c', 'echo "this is a deployment test" && rmdir /aaa/aaaaaaa/aaaaaaaa']
+        #command: ['sh', '-c', 'echo "this is a deployment test"']
         imagePullPolicy: {{ .Values.image.pullPolicy }}
 {{- end }}
