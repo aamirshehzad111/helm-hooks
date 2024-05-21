@@ -2,5 +2,5 @@ deployMain: true
 replicaCount: 2
 image:
   repository: nginx
-  tag: stable
+  tag: latest
   pullPolicy: IfNotPresent
